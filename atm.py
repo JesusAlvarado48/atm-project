@@ -1,34 +1,43 @@
-# Check account balance
-# Do you want to see account balance?
-# Do you want to withdrawl
-
-
 # ATM Machine
 
 # Define account balance
 bank = "Git Hub Bank"
-accnt_balance = 300.00
-view_balance = "y"
-withdrawl = "y"
+accnt_balance = 7125.00
+thank_you = (f"---Thank you for comming in to {bank}, Have a wonderful day!---")
 
-print(f"Welcome to {bank}!")
+# Display welcome message
+print(f"---Welcome to, {bank}!---")
+
+# if-else statement if user wants to view balance then withdrawl
 view_balance = input("Would you like to view your balance today?(y/n): ")
 if view_balance == "y":
     print(f"Great you currently have ${accnt_balance} in your account.")
     withdrawl = input("Would you like to make a withdrawl?(y/n): ")
     if withdrawl == "y":
-        print(f"How much would you like to withdrawl?")
-        withdrawl_amnt = int(input("Enter amount $: "))
-        accnt_balance = accnt_balance - withdrawl_amnt
-        if withdrawl_amnt < accnt_balance:
-            print("Sorry insufficient funds")
+        print(f"    -How much would you like to withdrawl?")
+        withdrawl_amnt = float(input("Enter amount $:"))
+        new_balance = accnt_balance - withdrawl_amnt        # Calculation post withdrawl                              
+        if withdrawl_amnt > new_balance:                # Cannot withdralw more than 
+            print("Sorry insufficient funds")           # Account balance
+            withdrawl_amnt = float(input("Enter another amount $:"))
         else:
-            print(f"Your remaining balance is ${accnt_balance:,.2f}")
-            print(f"Thank you for comming in to {bank}, Have a wonderful day!")
+            print(f"Your remaining balance is ${new_balance:,.2f}")
+            print(thank_you)                                  
     else:
-        print(f"Thank you for comming in to {bank}, Have a wonderful day!")
-else:
-    withdrawl = input(f"Would you like to make a withdrawl?(y/n): ")
+        print(thank_you)
 
-print("Thanks for looking at my ATM. The end :)")
-print("Here is another modification!")
+# if-elif-else statement if user does not want to view balance and just withdrawl
+elif view_balance == "n":
+    withdrawl = input(f"Would you like to make a withdrawl?(y/n): ")
+if withdrawl == "y":
+    print(f"How much would you like to withdrawl?")
+    withdrawl_amnt = float(input("Enter amount $:"))
+    new_balance = accnt_balance - withdrawl_amnt        # Calculation post withdraw
+    if withdrawl_amnt > new_balance:                 # Cannot withdrawl more than 
+        print("Sorry insufficient funds")               # Account balance user protection
+        withdrawl_amnt = float(input("Enter another amount $:")) # with while loop.
+    else:
+        print(f"Your remaining balance is ${new_balance:,.2f}")
+        print(thank_you)
+
+print("*** Thanks for looking at my ATM. The end :) ***")
